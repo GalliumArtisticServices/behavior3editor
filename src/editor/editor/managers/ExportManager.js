@@ -67,14 +67,7 @@ b3e.editor.ExportManager = function(editor) {
       description  : root.description,
       root         : first[0] || null,
       properties   : root.properties,
-      nodes        : {},
-      display     : {
-        camera_x : tree.x,
-        camera_y : tree.y,
-        camera_z : tree.scaleX,
-        x        : root.x,
-        y        : root.y,
-      },
+      nodes        : []
     };
 
     if (!ignoreNodes) {
@@ -98,8 +91,8 @@ b3e.editor.ExportManager = function(editor) {
         } else if (block.category === 'decorator') {
           d.child = children[0];
         }
-
-        data.nodes[block.id] = d;
+        
+        data.nodes.push(d);
       }
     });
 

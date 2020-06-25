@@ -39,11 +39,13 @@ b3e.editor.ImportManager = function(editor) {
     // Custom nodes
     if (data.custom_nodes) this.nodesAsData(data.custom_nodes);
 
-    var id, spec;
+    var spec;
 
     // Add blocks
-    for (id in data.nodes) {
-      spec = data.nodes[id];
+    for(var x = 0; x < data.nodes.length; ++x)
+    {
+      spec = data.nodes[x];
+
       var block = null;
       display = spec.display || {};
 
@@ -60,9 +62,11 @@ b3e.editor.ImportManager = function(editor) {
     }
 
     // Add connections
-    for (id in data.nodes) {
-      spec = data.nodes[id];
-      var inBlock = tree.blocks.get(id);
+    for(var x = 0; x < data.nodes.length; ++x)
+    {
+      spec = data.nodes[x];
+
+      var inBlock = tree.blocks.get(spec.id);
 
       var children = null;
       if (inBlock.category === 'composite' && spec.children) {
@@ -87,7 +91,7 @@ b3e.editor.ImportManager = function(editor) {
     }
 
     if (!data.display) {
-      tree.organize.organize(true);
+      // tree.organize.organize(true);
     }
 
     tree.selection.deselectAll();
@@ -109,6 +113,7 @@ b3e.editor.ImportManager = function(editor) {
 
     for (var i=0; i<data.length; i++) {
       var template = data[i];
+
       project.nodes.add(template);
     }
     editor.trigger('nodeimported');
