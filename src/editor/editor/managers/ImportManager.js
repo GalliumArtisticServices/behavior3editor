@@ -46,6 +46,12 @@ b3e.editor.ImportManager = function(editor) {
     {
       spec = data.nodes[x];
 
+      var properties = {};
+      for(var i = 0; i < spec.properties.length; ++i)
+      {
+        properties[spec.properties[i].key] = spec.properties[i].value;
+      }
+
       var block = null;
       display = spec.display || {};
 
@@ -53,7 +59,7 @@ b3e.editor.ImportManager = function(editor) {
       block.id = spec.id;
       block.title = spec.title;
       block.description = spec.description;
-      block.properties = tine.merge({}, block.properties, spec.properties);
+      block.properties = properties; //tine.merge({}, block.properties, spec.properties);
       block._redraw();
       
       if (spec.id === data.root) {
