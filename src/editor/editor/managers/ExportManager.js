@@ -95,7 +95,7 @@ b3e.editor.ExportManager = function(editor) {
         if (block.category === 'composite') {
           d.children = children;
         } else if (block.category === 'decorator') {
-          d.child = children[0];
+          d.children = children;
         }
         
         data.nodes.push(d);
